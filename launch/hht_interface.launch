@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+<!-- Reihenfolge getausch OJ 2.3.20 -->
+    <node name="hht_videostream"   pkg="rop_ws1920_hht" type="videoStream.py"       output="screen" launch-prefix="gnome-terminal -- python" />
+    <node name="hht_userinterface" pkg="rop_ws1920_hht" type="hht_userinterface.py" output="screen" launch-prefix="gnome-terminal -- python" />
+  
+</launch>

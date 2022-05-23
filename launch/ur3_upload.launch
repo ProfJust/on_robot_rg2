@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="limited" default="false" doc="If true, limits joint range [-PI, PI] on all joints." />
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" />
+  <arg name="kinematics_config" default="$(find rop_ws1920_hht)/config/ur3_calibration.yaml"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro '$(find rop_ws1920_hht)/urdf/ur3_robot_hht.urdf.xacro'
+    transmission_hw_interface:=$(arg transmission_hw_interface)
+    kinematics_config:=$(arg kinematics_config)" />
+</launch>

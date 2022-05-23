@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node name="hht_ur3control" pkg="rop_ws1920_hht" type="ur3_rg2_control.py" output="screen" launch-prefix="gnome-terminal -- python" />
+
+</launch>
