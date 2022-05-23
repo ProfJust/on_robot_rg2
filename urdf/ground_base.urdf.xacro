@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!-- xacro for extras components mounted on the manipulator -->
+
+<robot name="ground_base" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="ground_base" params="prefix">
+  
+    <link name="${prefix}ground_base1">
+      <visual>
+        <geometry>
+          <box size="1.0 1.0 0.05"/>
+        </geometry>
+        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+        <material name="white">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="1.0 1.0 0.05"/>
+        </geometry>
+        <origin xyz=" 0 0 0.0" rpy="0 0 0"/>
+      </collision>
+      <!--xacro:default_inertial mass="20"/-->
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="100"/>
+        <inertia ixx="1"  ixy="0"  ixz="0" iyy="1" iyz="0" izz="1" />
+      </inertial>
+    </link>
+
+    <link name="${prefix}ground_wall1">
+      <visual>
+        <geometry>
+          <box size="1.0 0.2 0.2"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="white">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="1.0 0.2 0.2"/>
+        </geometry>
+        <origin xyz=" 0 0 0.0" rpy="0 0 0"/>
+      </collision>
+      <!--xacro:default_inertial mass="20"/-->
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="100"/>
+        <inertia ixx="1"  ixy="0"  ixz="0" iyy="1" iyz="0" izz="1" />
+      </inertial>
+    </link>
+
+    <link name="${prefix}ground_wall2">
+      <visual>
+        <geometry>
+          <box size="0.2 1 0.5"/>
+        </geometry>
+        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+        <material name="white">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.2 1 0.5"/>
+        </geometry>
+        <origin xyz=" 0 0 0.0" rpy="0 0 0"/>
+      </collision>
+      <!--xacro:default_inertial mass="20"/-->
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="100"/>
+        <inertia ixx="1"  ixy="0"  ixz="0" iyy="1" iyz="0" izz="1" />
+      </inertial>
+    </link>
+
+    <joint name="${prefix}base_joint" type="fixed">
+      <origin xyz="0.0 0.0 0.025" rpy="0 0 ${pi/4}"/>
+      <parent link="${prefix}ground_base1"/>
+      <child link="${prefix}base_link"/>
+    </joint>
+
+    <joint name="${prefix}wall1_joint" type="fixed">
+      <origin xyz="0.0 0.4 0.125" rpy="0 0 0"/>
+      <parent link="${prefix}ground_base1"/>
+      <child link="${prefix}ground_wall1"/>
+    </joint>
+
+        <joint name="${prefix}wall2_joint" type="fixed">
+      <origin xyz="0.4 0.0 0.25" rpy="0 0 0"/>
+      <parent link="${prefix}ground_base1"/>
+      <child link="${prefix}ground_wall2"/>
+    </joint>
+   
+  </xacro:macro>
+</robot>    
+    

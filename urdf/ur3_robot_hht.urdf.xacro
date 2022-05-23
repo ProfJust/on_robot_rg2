@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro"
+       name="ur3" >
+  
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur3 -->
+  <xacro:include filename="$(find on_robot_rg2)/urdf/ur3_hht.urdf.xacro" />
+
+  <!-- rg2 -->
+  <xacro:include filename="$(find on_robot_rg2)/urdf/rg2.urdf.xacro" />
+
+  <!-- ground_base -->
+  <xacro:include filename="$(find on_robot_rg2)/urdf/ground_base.urdf.xacro" />
+
+  <!-- arm -->
+  <xacro:arg name="kinematics_config" default="$(find on_robot_rg2)/config/ur3_calibration.yaml"/>
+  <xacro:ur3_robot prefix="" joint_limited="false"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+    kinematics_file="${load_yaml('$(arg kinematics_config)')}"
+  />
+  <xacro:ground_base prefix=""/>
+  <xacro:rg2 prefix=""/>
+
+
+  <link name="world" />
+
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "ground_base1" />
+    <origin xyz="0 0 -0.025" rpy="0.0 0.0 ${-pi/4}" />
+  </joint>
+
+</robot>
